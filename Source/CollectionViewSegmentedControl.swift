@@ -91,6 +91,7 @@ import UIKit
     ///  The default value for this property is true
     @IBInspectable public var isHapticsEnabled: Bool = true
     
+#if !os(visionOS)
     public var hapticStyle: UIImpactFeedbackGenerator.FeedbackStyle = .light
     public var hapticIntensity: CGFloat = 1.0
     
@@ -100,6 +101,9 @@ import UIKit
                 .impactOccurred(intensity: hapticIntensity)
         }
     }
+#else
+    private func hapticsHandler() { }
+#endif
     
     // MARK: - Initializers
     
